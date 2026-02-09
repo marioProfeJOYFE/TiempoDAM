@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import com.mrh.tiempodam.ui.components.CityDetailScreen
 import com.mrh.tiempodam.ui.components.CityListWeatherScreen
 import com.mrh.tiempodam.ui.components.ConverterScreen
 import kotlinx.serialization.Serializable
@@ -46,11 +47,12 @@ fun AppNavigation() {
                 ))
             })
         }
-        composable<ClimaDetailDestination>{ backStackEntry ->
-            val args = backStackEntry.toRoute<ClimaDetailDestination>()
-            // TODO: AQUI SEGUIRÁ LA PRÓXIMA CLASE
-            // FALTA IMPLEMENTAR VIEWMODEL PARA LA NAVEGACION
-            Text(text = args.ciudad)
+        composable<ClimaDetailDestination>{
+            CityDetailScreen(
+                onBackClick = {
+                    navController.popBackStack()
+                }
+            )
         }
     }
 }
